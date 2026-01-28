@@ -1,0 +1,175 @@
+ <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Cercle Privé - Accueil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- RESET ET BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            /* Arrière-plan dégradé complexe pour faire ressortir l'effet "verre" */
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh; /* Prend toute la hauteur de l'écran */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #E0E0E0; /* Blanc cassé pour le texte */
+            overflow: hidden; /* Empêche le défilement si des éléments dépassent */
+            position: relative;
+        }
+
+        /* Ajout de formes floues en arrière-plan pour donner de la profondeur au glassmorphism */
+        body::before, body::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            z-index: -1; /* Derrière le contenu */
+            filter: blur(120px); /* Flou intense */
+        }
+        body::before {
+            background: #8A2BE2; /* Violet électrique */
+            top: -10%;
+            left: -20%;
+            opacity: 0.4;
+        }
+        body::after {
+            background: #C5A059; /* Or doux */
+            bottom: -10%;
+            right: -20%;
+            opacity: 0.3;
+        }
+
+        /* --- CONTENEUR PRINCIPAL --- */
+        .main-container {
+            text-align: center;
+            padding: 20px;
+            z-index: 10; /* S'assure que le contenu est au-dessus du fond */
+            width: 100%;
+            max-width: 600px;
+        }
+
+        /* Logo et Titre */
+        .logo-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #C5A059; /* Couleur Or */
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .welcome-sub {
+            font-weight: 300;
+            margin-bottom: 40px;
+            opacity: 0.8;
+        }
+
+        /* --- LA QUESTION --- */
+        .question-text {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+
+        /* --- CONTENEUR DES CARTES --- */
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px; /* Espace entre les cartes */
+            flex-wrap: wrap; /* Permet aux cartes de passer l'une sous l'autre sur petit écran */
+        }
+
+        /* --- STYLE GLASSMORPHISM DES CARTES --- */
+        .glass-card {
+            text-decoration: none; /* Enlève le soulignement des liens */
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            
+            width: 160px;
+            height: 220px;
+            padding: 20px;
+            border-radius: 20px; /* Coins arrondis */
+            
+            /* LE COEUR DU GLASSMORPHISM */
+            background: rgba(255, 255, 255, 0.05); /* Fond blanc très transparent */
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Ombre douce */
+            backdrop-filter: blur(12px); /* L'effet de flou d'arrière-plan */
+            -webkit-backdrop-filter: blur(12px); /* Pour Safari */
+            border: 1px solid rgba(255, 255, 255, 0.18); /* Bordure fine et transparente */
+            
+            transition: all 0.3s ease; /* Animation fluide au survol */
+            cursor: pointer;
+        }
+
+        /* Effet au survol de la carte */
+        .glass-card:hover {
+            transform: translateY(-5px); /* La carte remonte légèrement */
+            background: rgba(255, 255, 255, 0.1); /* Devient légèrement plus clair */
+            border-color: #C5A059; /* La bordure devient dorée */
+            box-shadow: 0 15px 35px rgba(197, 160, 89, 0.2); /* Légère lueur dorée */
+        }
+
+        /* Style des silhouettes */
+        .silhouette-img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            /* Filtre pour rendre les images SVG blanches */
+            filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(316deg) brightness(100%) contrast(100%);
+            opacity: 0.9;
+            transition: 0.3s;
+        }
+        
+        .glass-card:hover .silhouette-img {
+             opacity: 1;
+             transform: scale(1.05);
+        }
+
+        /* Style du texte dans les cartes */
+        .card-label {
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <h1 class="logo-title">Cercle Privé</h1>
+        <p class="welcome-sub">Bienvenue dans votre espace exclusif.</p>
+
+        <p class="question-text">Vous êtes intéressé par ?</p>
+
+        <div class="cards-container">
+            <a href="page2_femmes.html" class="glass-card">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'><path d='M12 2C8.69 2 6 4.69 6 8V14H4V16H6V22H8V16H11V14H8V8C8 5.79 9.79 4 12 4S16 5.79 16 8V14H13V16H16V22H18V16H20V14H18V8C18 4.69 15.31 2 12 2Z'/></svg>" alt="Silhouette Femme" class="silhouette-img">
+                <span class="card-label">FEMMES</span>
+            </a>
+
+            <a href="page2_hommes.html" class="glass-card">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'><path d='M12 2C9.79 2 8 3.79 8 6V12H6V14H8V22H10V14H14V22H16V14H18V12H16V6C16 3.79 14.21 2 12 2M12 4C13.1 4 14 4.9 14 6V12H10V6C10 4.9 10.9 4 12 4Z'/></svg>" alt="Silhouette Homme" class="silhouette-img">
+                <span class="card-label">HOMMES</span>
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>
