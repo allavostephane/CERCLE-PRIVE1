@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Réserver Stella - Cercle Privé</title>
+    <title>Galerie Hommes - Cercle Privé</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
             --gold: #C5A059;
             --dark-bg: #0f0c29;
-            --glass: rgba(255, 255, 255, 0.1);
+            --glass: rgba(255, 255, 255, 0.05);
         }
 
         body {
@@ -17,179 +17,232 @@
             color: white;
             font-family: 'Montserrat', sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 20px;
+            padding-bottom: 100px;
         }
 
-        .container { padding: 20px; max-width: 500px; margin: 0 auto; }
-
-        /* Style Header */
-        .back-btn { color: var(--gold); text-decoration: none; display: inline-block; margin: 20px 0; }
-
-        /* Image de profil */
-        .profile-hero {
-            width: 100%;
-            height: 350px;
-            object-fit: cover;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .name-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            color: var(--gold);
-            margin-top: 20px;
-        }
-
-        .description {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            opacity: 0.8;
-            margin: 15px 0;
-        }
-
-        /* --- FORMULAIRE --- */
-        .booking-card {
-            background: var(--glass);
-            padding: 25px;
-            border-radius: 20px;
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255,255,255,0.1);
-            margin-top: 30px;
-        }
-
-        .form-group { margin-bottom: 20px; }
-
-        label { display: block; margin-bottom: 8px; font-size: 0.8rem; text-transform: uppercase; color: var(--gold); }
-
-        input, select {
-            width: 100%;
-            padding: 12px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 8px;
-            color: white;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .total-box {
-            background: rgba(197, 160, 89, 0.1);
-            padding: 15px;
-            border-radius: 10px;
+        .header {
             text-align: center;
-            margin: 20px 0;
-            border: 1px dashed var(--gold);
+            margin-bottom: 30px;
         }
 
-        .total-price { font-size: 1.5rem; font-weight: bold; color: var(--gold); }
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+            font-size: 1.8rem;
+        }
 
-        /* BOUTON WHATSAPP */
-        .ws-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: #25D366; /* Vert WhatsApp */
-            color: white;
+        .back-link {
+            color: var(--gold);
             text-decoration: none;
-            padding: 18px;
-            border-radius: 50px;
-            font-weight: bold;
-            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
-            transition: 0.3s;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 15px;
         }
 
-        .ws-btn:hover { transform: scale(1.02); opacity: 0.9; }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .profile-card {
+            background: var(--glass);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .image-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            height: 400px;
+            scrollbar-width: none;
+        }
+        .image-slider::-webkit-scrollbar { display: none; }
+
+        .image-slider img {
+            min-width: 100%;
+            height: 100%;
+            object-fit: cover;
+            scroll-snap-align: start;
+        }
+
+        .profile-info {
+            padding: 20px;
+        }
+
+        .name-age {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .desc {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        .action-btn {
+            display: block;
+            background: linear-gradient(135deg, var(--gold), #9c7d41);
+            color: #0f0c29;
+            text-align: center;
+            padding: 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .price-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--gold);
+            color: #0f0c29;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            z-index: 5;
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <a href="page2_femmes.html" class="back-btn">← Retour à la liste</a>
-    
-    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600" class="profile-hero" alt="Stella">
-    
-    <h1 class="name-title">Stella, 24 ans</h1>
-    <p class="description">
-        Douceur et professionnalisme. Je vous propose une expérience de relaxation unique, 
-        alliant techniques de massage tantrique et suédois dans un cadre discret.
-    </p>
-
-    <div class="booking-card">
-        <h3 style="margin-bottom: 20px;">Réserver une séance</h3>
-        
-        <div class="form-group">
-            <label>Date souhaitée</label>
-            <input type="date" id="date">
-        </div>
-
-        <div class="form-group">
-            <label>Heure</label>
-            <input type="time" id="time">
-        </div>
-
-        <div class="form-group">
-            <label>Durée de la prestation</label>
-            <select id="duration" onchange="calculateTotal()">
-                <option value="1">1 Heure - 50.000 FCFA</option>
-                <option value="2">2 Heures - 90.000 FCFA</option>
-                <option value="3">3 Heures - 130.000 FCFA</option>
-                <option value="night">Nuit entière - 250.000 FCFA</option>
-            </select>
-        </div>
-
-        <div class="total-box">
-            <div>Prix Total</div>
-            <div class="total-price" id="totalDisplay">50.000 FCFA</div>
-        </div>
-
-        <a href="#" class="ws-btn" onclick="sendToWhatsApp()">
-            RÉSERVER VIA WHATSAPP
-        </a>
+    <div class="header">
+        <a href="index.html" class="back-link">← Retour à l'accueil</a>
+        <h1>Prestations Masculines</h1>
     </div>
-</div>
 
-<script>
-    const prixHeure = 50000;
-
-    function calculateTotal() {
-        const duration = document.getElementById('duration').value;
-        let total = 0;
+    <div class="gallery-grid">
         
-        if(duration === '1') total = 50000;
-        else if(duration === '2') total = 90000;
-        else if(duration === '3') total = 130000;
-        else if(duration === 'night') total = 250000;
+        <div class="profile-card">
+            <div class="price-badge">50.000 FCFA/h</div>
+            <div class="image-slider">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500" alt="Marc">
+            </div>
+            <div class="profile-info">
+                <div class="name-age">Marc, 28 ans</div>
+                <p class="desc">Expert en massage deep tissue et relaxation intense. Discret et élégant.</p>
+                <a href="profil_marc.html" class="action-btn">DÉTAILS & RÉSERVER</a>
+            </div>
+        </div>
 
-        document.getElementById('totalDisplay').innerText = total.toLocaleString() + " FCFA";
-        return total;
-    }
+        <div class="profile-card">
+            <div class="price-badge">45.000 FCFA/h</div>
+            <div class="image-slider">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500" alt="Kevin">
+            </div>
+            <div class="profile-info">
+                <div class="name-age">Kevin, 25 ans</div>
+                <p class="desc">Accompagnateur VIP pour vos événements. Présentation impeccable.</p>
+                <a href="profil_kevin.html" class="action-btn">DÉTAILS & RÉSERVER</a>
+            </div>
+        </div>
 
-    function sendToWhatsApp() {
-        const date = document.getElementById('date').value;
-        const time = document.getElementById('time').value;
-        const duration = document.getElementById('duration').options[document.getElementById('duration').selectedIndex].text;
-        const total = document.getElementById('totalDisplay').innerText;
-        
-        if(!date || !time) {
-            alert("Veuillez choisir une date et une heure.");
-            return;
-        }
+        <div class="profile-card">
+            <div class="price-badge">60.000 FCFA/h</div>
+            <div class="image-slider">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500" alt="David">
+            </div>
+            <div class="profile-info">
+                <div class="name-age">David, 30 ans</div>
+                <p class="desc">Masseur thérapeutique. Idéal pour soulager les tensions musculaires.</p>
+                <a href="profil_david.html" class="action-btn">DÉTAILS & RÉSERVER</a>
+            </div>
+        </div>
 
-        const numero = "2290151474715";
-        const message = `Bonjour Cercle Privé, je souhaite réserver Stella.
-📅 Date : ${date}
-⏰ Heure : ${time}
-⏳ Durée : ${duration}
-💰 Total : ${total}
-Merci de me confirmer la disponibilité.`;
+        <div class="profile-card">
+            <div class="price-badge">40.000 FCFA/h</div>
+            <div class="image-slider">
+                <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=500" alt="Alex">
+            </div>
+            <div class="profile-info">
+                <div class="name-age">Alex, 24 ans</div>
+                <p class="desc">Dynamique et souriant. Spécialiste massage suédois.</p>
+                <a href="profil_alex.html" class="action-btn">DÉTAILS & RÉSERVER</a>
+            </div>
+        </div>
 
-        // Encodage du message pour l'URL
-        const url = "https://wa.me/" + numero + "?text=" + encodeURIComponent(message);
-        window.open(url, '_blank');
-    }
-</script>
+        <div class="profile-card">
+            <div class="price-badge">70.000 FCFA/h</div>
+            <div class="image-slider">
+                <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=500" alt="Sam">
+            </div>
+            <div class="profile-info">
+                <div class="name-age">Sam, 29 ans</div>
+                <p class="desc">Prestance et charisme. Accompagnement de luxe.</p>
+                <a href="profil_sam.html" class="action-btn">DÉTAILS & RÉSERVER</a>
+            </div>
+        </div>
 
+        <div class="profile-card">
+            <div class="price-badge">50.000 FCFA/h</div>
+            <div class="image-slider">
+                <img src="https://images.unsplash.com/photo-1488161628813-04466f872be2?w=500" alt="Chris">
+            </div>
+            <div class="profile-info">
+                <div class="name-age">Chris, 27 ans</div>
+                <p class="desc">Masseur certifié, ambiance zen et huiles essentielles.</p>
+                <a href="profil_chris.html" class="action-btn">DÉTAILS & RÉSERVER</a>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <div class="price-badge">55.000 FCFA/h</div>
+            <div class="image-slider">
+                <img src="https://images.unsplash.com/photo-1504257432389-52343af06ae3?w=500" alt="Jules">
+            </div>
+            <div class="profile-info">
+                <div class="name-age">Jules, 26 ans</div>
+                <p class="desc">Spécialiste massage relaxant aux pierres chaudes.</p>
+                <a href="profil_jules.html" class="action-btn">DÉTAILS & RÉSERVER</a>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <div class="price-badge">80.000 FCFA/h</div>
+            <div class="image-slider">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500" alt="Eric">
+            </div>
+            <div class="profile-info">
+                <div class="name-age">Eric, 32 ans</div>
+                <p class="desc">Services haut de gamme pour clients exigeants.</p>
+                <a href="profil_eric.html" class="action-btn">DÉTAILS & RÉSERVER</a>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <div class="price-badge">45.000 FCFA/h</div>
+            <div class="image-slider">
+                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500" alt="Ryan">
+            </div>
+            <div class="profile-info">
+                <div class="name-age">Ryan, 23 ans</div>
+                <p class="desc">Masseur sportif, idéal après une longue journée.</p>
+                <a href="profil_ryan.html" class="action-btn">DÉTAILS & RÉSERVER</a>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <div class="price-badge">50.000 FCFA/h</div>
+            <div class="image-slider">
+                <img src="https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?w=500" alt="Victor">
+            </div>
+            <div class="profile-info">
+                <div class="name-age">Victor, 31 ans</div>
+                <p class="desc">Calme et sérénité. Expert en massage thaïlandais.</p>
+                <a href="profil_victor.html" class="action-btn">DÉTAILS & RÉSERVER</a>
+            </div>
+        </div>
+
+    </div>
 </body>
 </html>
-
