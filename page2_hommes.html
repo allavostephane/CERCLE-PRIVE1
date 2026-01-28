@@ -3,246 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galerie Hommes - Cercle Privé</title>
+    <title>Cercle Privé - Sélection Masculine</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --gold: #C5A059;
-            --dark-bg: #0f0c29;
-            --glass: rgba(255, 255, 255, 0.05);
-        }
+        :root { --gold: #C5A059; --dark: #050510; }
+        * { box-sizing: border-box; }
+        body { background: var(--dark); color: white; font-family: 'Montserrat', sans-serif; margin: 0; padding: 10px; overflow-x: hidden; }
+        
+        .header { text-align: center; padding: 30px 0; }
+        .header h1 { font-family: 'Playfair Display', serif; color: var(--gold); margin: 0; font-size: 1.8rem; letter-spacing: 2px; }
+        .back-btn { color: var(--gold); text-decoration: none; font-size: 0.8rem; display: block; margin-top: 10px; opacity: 0.7; }
 
-        body {
-            background: var(--dark-bg);
-            color: white;
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            padding: 20px;
-            padding-bottom: 100px;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .header h1 {
-            font-family: 'Playfair Display', serif;
-            color: var(--gold);
-            font-size: 1.8rem;
-        }
-
-        .back-link {
-            color: var(--gold);
-            text-decoration: none;
-            font-size: 0.9rem;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
-            max-width: 500px;
-            margin: 0 auto;
-        }
+        .gallery-container { display: flex; flex-direction: column; gap: 45px; max-width: 500px; margin: 0 auto; padding-bottom: 60px; }
 
         .profile-card {
-            background: var(--glass);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 35px;
+            padding: 20px 0;
+            border: 1px solid rgba(197, 160, 89, 0.1);
             position: relative;
         }
 
-        .image-slider {
+        .photo-slider {
             display: flex;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
-            height: 400px;
+            padding: 0 40px;
             scrollbar-width: none;
+            gap: 0;
         }
-        .image-slider::-webkit-scrollbar { display: none; }
+        .photo-slider::-webkit-scrollbar { display: none; }
 
-        .image-slider img {
-            min-width: 100%;
-            height: 100%;
+        .photo-slider img {
+            min-width: 240px;
+            height: 340px;
             object-fit: cover;
-            scroll-snap-align: start;
+            border-radius: 25px;
+            scroll-snap-align: center;
+            margin-right: -60px;
+            border: 2px solid var(--dark);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            transition: transform 0.3s;
         }
 
-        .profile-info {
-            padding: 20px;
+        .info-area { 
+            text-align: center; 
+            padding: 20px; 
+            background: linear-gradient(to top, var(--dark) 50%, transparent);
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
         }
+        .price { color: var(--gold); font-weight: bold; font-size: 0.85rem; letter-spacing: 1px; }
+        .name { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--gold); margin: 8px 0; }
+        
+        .indicator-lines { display: flex; justify-content: center; gap: 6px; margin-bottom: 20px; }
+        .line { width: 14px; height: 3px; background: rgba(197, 160, 89, 0.2); border-radius: 5px; transition: 0.4s; }
+        .line.active { background: var(--gold); width: 28px; box-shadow: 0 0 8px var(--gold); }
 
-        .name-age {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .desc {
-            font-size: 0.9rem;
-            color: #ccc;
-            margin-bottom: 20px;
-        }
-
-        .action-btn {
-            display: block;
-            background: linear-gradient(135deg, var(--gold), #9c7d41);
-            color: #0f0c29;
-            text-align: center;
-            padding: 15px;
-            border-radius: 12px;
+        .btn-details {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), #8a6d3b);
+            color: black;
             text-decoration: none;
+            padding: 14px 40px;
+            border-radius: 50px;
             font-weight: bold;
-        }
-
-        .price-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--gold);
-            color: #0f0c29;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-weight: bold;
-            font-size: 0.8rem;
-            z-index: 5;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
         }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <a href="index.html" class="back-link">← Retour à l'accueil</a>
-        <h1>Prestations Masculines</h1>
+        <h1>Cercle Privé</h1>
+        <a href="index.html" class="back-btn">← RETOUR</a>
     </div>
 
-    <div class="gallery-grid">
+    <div class="gallery-container">
         
         <div class="profile-card">
-            <div class="price-badge">50.000 FCFA/h</div>
-            <div class="image-slider">
-                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500" alt="Marc">
+            <div class="photo-slider" onscroll="updateLines(this, 'linesH1')">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400">
             </div>
-            <div class="profile-info">
-                <div class="name-age">Marc, 28 ans</div>
-                <p class="desc">Expert en massage deep tissue et relaxation intense. Discret et élégant.</p>
-                <a href="profil_marc.html" class="action-btn">DÉTAILS & RÉSERVER</a>
-            </div>
-        </div>
-
-        <div class="profile-card">
-            <div class="price-badge">45.000 FCFA/h</div>
-            <div class="image-slider">
-                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500" alt="Kevin">
-            </div>
-            <div class="profile-info">
-                <div class="name-age">Kevin, 25 ans</div>
-                <p class="desc">Accompagnateur VIP pour vos événements. Présentation impeccable.</p>
-                <a href="profil_kevin.html" class="action-btn">DÉTAILS & RÉSERVER</a>
+            <div class="info-area">
+                <span class="price">50.000 FCFA / H</span>
+                <h2 class="name">Marc, 28 ans</h2>
+                <div class="indicator-lines" id="linesH1">
+                    <div class="line active"></div><div class="line"></div><div class="line"></div>
+                </div>
+                <a href="profil_marc.html" class="btn-details">Voir le Profil</a>
             </div>
         </div>
 
         <div class="profile-card">
-            <div class="price-badge">60.000 FCFA/h</div>
-            <div class="image-slider">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500" alt="David">
+            <div class="photo-slider" onscroll="updateLines(this, 'linesH2')">
+                <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=400">
+                <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=400">
+                <img src="https://images.unsplash.com/photo-1488161628813-04466f872be2?w=400">
             </div>
-            <div class="profile-info">
-                <div class="name-age">David, 30 ans</div>
-                <p class="desc">Masseur thérapeutique. Idéal pour soulager les tensions musculaires.</p>
-                <a href="profil_david.html" class="action-btn">DÉTAILS & RÉSERVER</a>
-            </div>
-        </div>
-
-        <div class="profile-card">
-            <div class="price-badge">40.000 FCFA/h</div>
-            <div class="image-slider">
-                <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=500" alt="Alex">
-            </div>
-            <div class="profile-info">
-                <div class="name-age">Alex, 24 ans</div>
-                <p class="desc">Dynamique et souriant. Spécialiste massage suédois.</p>
-                <a href="profil_alex.html" class="action-btn">DÉTAILS & RÉSERVER</a>
+            <div class="info-area">
+                <span class="price">45.000 FCFA / H</span>
+                <h2 class="name">Kevin, 25 ans</h2>
+                <div class="indicator-lines" id="linesH2">
+                    <div class="line active"></div><div class="line"></div><div class="line"></div>
+                </div>
+                <a href="profil_kevin.html" class="btn-details">Voir le Profil</a>
             </div>
         </div>
 
         <div class="profile-card">
-            <div class="price-badge">70.000 FCFA/h</div>
-            <div class="image-slider">
-                <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=500" alt="Sam">
+            <div class="photo-slider" onscroll="updateLines(this, 'linesH3')">
+                <img src="https://images.unsplash.com/photo-1504257432389-52343af06ae3?w=400">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400">
+                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400">
             </div>
-            <div class="profile-info">
-                <div class="name-age">Sam, 29 ans</div>
-                <p class="desc">Prestance et charisme. Accompagnement de luxe.</p>
-                <a href="profil_sam.html" class="action-btn">DÉTAILS & RÉSERVER</a>
-            </div>
-        </div>
-
-        <div class="profile-card">
-            <div class="price-badge">50.000 FCFA/h</div>
-            <div class="image-slider">
-                <img src="https://images.unsplash.com/photo-1488161628813-04466f872be2?w=500" alt="Chris">
-            </div>
-            <div class="profile-info">
-                <div class="name-age">Chris, 27 ans</div>
-                <p class="desc">Masseur certifié, ambiance zen et huiles essentielles.</p>
-                <a href="profil_chris.html" class="action-btn">DÉTAILS & RÉSERVER</a>
+            <div class="info-area">
+                <span class="price">60.000 FCFA / H</span>
+                <h2 class="name">David, 30 ans</h2>
+                <div class="indicator-lines" id="linesH3">
+                    <div class="line active"></div><div class="line"></div><div class="line"></div>
+                </div>
+                <a href="profil_david.html" class="btn-details">Voir le Profil</a>
             </div>
         </div>
 
-        <div class="profile-card">
-            <div class="price-badge">55.000 FCFA/h</div>
-            <div class="image-slider">
-                <img src="https://images.unsplash.com/photo-1504257432389-52343af06ae3?w=500" alt="Jules">
-            </div>
-            <div class="profile-info">
-                <div class="name-age">Jules, 26 ans</div>
-                <p class="desc">Spécialiste massage relaxant aux pierres chaudes.</p>
-                <a href="profil_jules.html" class="action-btn">DÉTAILS & RÉSERVER</a>
-            </div>
         </div>
 
-        <div class="profile-card">
-            <div class="price-badge">80.000 FCFA/h</div>
-            <div class="image-slider">
-                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500" alt="Eric">
-            </div>
-            <div class="profile-info">
-                <div class="name-age">Eric, 32 ans</div>
-                <p class="desc">Services haut de gamme pour clients exigeants.</p>
-                <a href="profil_eric.html" class="action-btn">DÉTAILS & RÉSERVER</a>
-            </div>
-        </div>
-
-        <div class="profile-card">
-            <div class="price-badge">45.000 FCFA/h</div>
-            <div class="image-slider">
-                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500" alt="Ryan">
-            </div>
-            <div class="profile-info">
-                <div class="name-age">Ryan, 23 ans</div>
-                <p class="desc">Masseur sportif, idéal après une longue journée.</p>
-                <a href="profil_ryan.html" class="action-btn">DÉTAILS & RÉSERVER</a>
-            </div>
-        </div>
-
-        <div class="profile-card">
-            <div class="price-badge">50.000 FCFA/h</div>
-            <div class="image-slider">
-                <img src="https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?w=500" alt="Victor">
-            </div>
-            <div class="profile-info">
-                <div class="name-age">Victor, 31 ans</div>
-                <p class="desc">Calme et sérénité. Expert en massage thaïlandais.</p>
-                <a href="profil_victor.html" class="action-btn">DÉTAILS & RÉSERVER</a>
-            </div>
-        </div>
-
-    </div>
+    <script>
+        function updateLines(slider, linesId) {
+            const scrollLeft = slider.scrollLeft;
+            const itemWidth = slider.querySelector('img').offsetWidth - 60;
+            const index = Math.round(scrollLeft / itemWidth);
+            
+            const linesContainer = document.getElementById(linesId);
+            if(!linesContainer) return;
+            const lines = linesContainer.getElementsByClassName('line');
+            
+            for (let i = 0; i < lines.length; i++) {
+                lines[i].classList.remove('active');
+            }
+            if(lines[index]) {
+                lines[index].classList.add('active');
+            }
+        }
+    </script>
 </body>
 </html>
