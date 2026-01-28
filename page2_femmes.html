@@ -8,165 +8,131 @@
     <style>
         :root {
             --gold: #C5A059;
-            --dark: #0f0c29;
-            --glass: rgba(255, 255, 255, 0.05);
+            --dark: #050510;
         }
 
         body {
-            background: radial-gradient(circle at center, #1a1a3a 0%, #050510 100%);
+            background: var(--dark);
             color: white;
             font-family: 'Montserrat', sans-serif;
             margin: 0;
-            padding-bottom: 50px;
-            overflow-x: hidden;
+            padding: 20px;
         }
 
-        .header { text-align: center; padding: 40px 20px; }
-        .header h1 { font-family: 'Playfair Display', serif; color: var(--gold); letter-spacing: 2px; }
+        .header { text-align: center; padding: 30px 0; }
+        .header h1 { font-family: 'Playfair Display', serif; color: var(--gold); margin: 0; }
 
-        /* --- CONTENEUR DE LA GALERIE --- */
-        .main-carousel {
-            display: flex;
-            overflow-x: auto;
-            padding: 20px 40px;
-            gap: 0px; /* On enlève l'espace pour permettre le chevauchement visuel via le padding */
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none; /* Cache la barre sur Firefox */
+        /* --- GRILLE DES PROFILS --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        .main-carousel::-webkit-scrollbar { display: none; } /* Cache sur Chrome/Safari */
 
         /* --- CARTE DE PROFIL --- */
         .profile-card {
-            min-width: 85vw; /* Largeur de la carte pour qu'on voit les bords des autres */
-            height: 550px;
-            margin: 0 -15px; /* Effet de chevauchement */
-            position: relative;
-            border-radius: 30px;
-            overflow: hidden;
-            scroll-snap-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 25px;
+            padding: 20px;
             border: 1px solid rgba(197, 160, 89, 0.2);
-            transition: transform 0.4s;
-        }
-
-        /* Image avec dégradé intégré */
-        .card-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Dégradé en bas pour les détails */
-        .card-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60%;
-            background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-        }
-
-        .price-tag {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--gold);
-            color: black;
-            padding: 8px 15px;
-            border-radius: 15px;
-            font-weight: bold;
-            font-size: 0.8rem;
-        }
-
-        .name { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold); margin: 0; }
-        .age { font-size: 1.1rem; opacity: 0.8; margin-bottom: 10px; }
-        .short-desc { font-size: 0.85rem; line-height: 1.4; margin-bottom: 20px; opacity: 0.7; }
-
-        /* --- PETITS TRAITS (INDICATEURS) --- */
-        .indicators {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-        .line { width: 30px; height: 3px; background: rgba(197, 160, 89, 0.3); border-radius: 2px; }
-        .line.active { background: var(--gold); box-shadow: 0 0 10px var(--gold); }
-
-        .view-btn {
-            background: transparent;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            padding: 12px;
-            border-radius: 50px;
-            text-decoration: none;
+            position: relative;
             text-align: center;
-            font-weight: 600;
-            font-size: 0.9rem;
+        }
+
+        /* --- STACK DE PHOTOS (CHEVAUCHEMENT) --- */
+        .photo-stack {
+            position: relative;
+            height: 350px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .stack-img {
+            width: 200px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            position: absolute;
+            border: 2px solid var(--dark);
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
             transition: 0.3s;
         }
-        .view-btn:hover { background: var(--gold); color: black; }
 
+        /* Effet de chevauchement (Débordement gauche/droite) */
+        .img-1 { transform: translateX(-40px) rotate(-10deg); z-index: 1; opacity: 0.6; }
+        .img-2 { transform: translateX(40px) rotate(10deg); z-index: 1; opacity: 0.6; }
+        .img-3 { transform: translateX(0) rotate(0deg); z-index: 2; width: 220px; height: 320px; } /* Photo principale au centre */
+
+        /* --- DÉGRADÉ ET INFOS --- */
+        .info-area {
+            position: relative;
+            padding-top: 10px;
+            background: linear-gradient(to top, var(--dark) 70%, transparent);
+        }
+
+        .price { color: var(--gold); font-weight: bold; font-size: 0.9rem; margin-bottom: 10px; display: block;}
+
+        .name { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--gold); margin: 5px 0; }
+
+        /* --- PETITS TRAITS (INDICATEURS) --- */
+        .indicator-lines {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin: 15px 0;
+        }
+        .line { width: 15px; height: 3px; background: rgba(197, 160, 89, 0.3); border-radius: 5px; }
+        .line.active { background: var(--gold); width: 25px; }
+
+        .btn-details {
+            display: inline-block;
+            background: var(--gold);
+            color: black;
+            text-decoration: none;
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
 
     <div class="header">
         <h1>Cercle Privé</h1>
-        <p style="letter-spacing: 3px; font-size: 0.7rem; opacity: 0.6;">SÉLECTION FÉMININE</p>
+        <p style="color: grey; font-size: 0.8rem;">PRESTATIONS FÉMININES</p>
     </div>
 
-    <div class="main-carousel">
+    <div class="gallery-grid">
         
         <div class="profile-card">
-            <div class="price-tag">50.000 FCFA/h</div>
-            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600" class="card-img">
-            <div class="card-overlay">
-                <div class="indicators">
-                    <div class="line active"></div><div class="line"></div><div class="line"></div>
-                </div>
-                <h2 class="name">Stella</h2>
-                <span class="age">24 ans • Massage Tantrique</span>
-                <p class="short-desc">Une expérience sensorielle unique où la douceur rencontre l'expertise du bien-être...</p>
-                <a href="profil_stella.html" class="view-btn">VOIR LES DÉTAILS</a>
+            <span class="price">50.000 FCFA / h</span>
+            
+            <div class="photo-stack">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400" class="stack-img img-1">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400" class="stack-img img-2">
+                <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400" class="stack-img img-3">
             </div>
-        </div>
 
-        <div class="profile-card">
-            <div class="price-tag">45.000 FCFA/h</div>
-            <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=600" class="card-img">
-            <div class="card-overlay">
-                <div class="indicators">
-                    <div class="line active"></div><div class="line"></div><div class="line"></div>
+            <div class="info-area">
+                <h2 class="name">Stella, 24 ans</h2>
+                <p style="font-size: 0.8rem; opacity: 0.7;">Massage tantrique et douceur absolue.</p>
+                
+                <div class="indicator-lines">
+                    <div class="line active"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
                 </div>
-                <h2 class="name">Inès</h2>
-                <span class="age">22 ans • Accompagnement VIP</span>
-                <p class="short-desc">Élégance et discrétion pour vos dîners d'affaires et soirées privées prestigieuses...</p>
-                <a href="profil_ines.html" class="view-btn">VOIR LES DÉTAILS</a>
-            </div>
-        </div>
 
-        <div class="profile-card">
-            <div class="price-tag">60.000 FCFA/h</div>
-            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600" class="card-img">
-            <div class="card-overlay">
-                <div class="indicators">
-                    <div class="line active"></div><div class="line"></div><div class="line"></div>
-                </div>
-                <h2 class="name">Clara</h2>
-                <span class="age">26 ans • Relaxation Intense</span>
-                <p class="short-desc">Libérez vos tensions avec un massage Deep Tissue sur mesure dans un cadre luxueux...</p>
-                <a href="profil_clara.html" class="view-btn">VOIR LES DÉTAILS</a>
+                <a href="profil_stella.html" class="btn-details">VOIR LES DÉTAILS</a>
             </div>
         </div>
 
         </div>
-
-    <div style="text-align: center; margin-top: 30px;">
-        <a href="index.html" style="color: grey; text-decoration: none; font-size: 0.8rem;">← REVENIR AU CHOIX</a>
-    </div>
 
 </body>
 </html>
