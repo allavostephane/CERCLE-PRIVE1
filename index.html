@@ -6,7 +6,7 @@
     <title>Cercle Privé</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -19,8 +19,7 @@
     <div class="age-card">
         <h2>🔞 Accès réservé</h2>
         <p>
-            Cercle Privé est strictement réservé aux personnes majeures (+18).
-            <br />
+            Cercle Privé est strictement réservé aux personnes majeures (+18).<br>
             En continuant, vous confirmez avoir l’âge légal.
         </p>
 
@@ -48,8 +47,7 @@
 <section class="hero">
     <h1>Bienvenue dans votre cercle exclusif</h1>
     <p>
-        Une expérience privée, élégante et confidentielle.
-        <br>
+        Une expérience privée, élégante et confidentielle.<br>
         Sélectionnez votre univers.
     </p>
 </section>
@@ -63,7 +61,7 @@
         <div class="content">
             <h2>Prestations Femmes</h2>
             <p>Élégance · Charme · Discrétion</p>
-            <button>Découvrir</button>
+            <button onclick="location.href='femmes.html'">Découvrir</button>
         </div>
     </div>
 
@@ -73,7 +71,7 @@
         <div class="content">
             <h2>Prestations Hommes</h2>
             <p>Prestance · Raffinement · Confidentialité</p>
-            <button>Découvrir</button>
+            <button onclick="location.href='hommes.html'">Découvrir</button>
         </div>
     </div>
 
@@ -86,7 +84,7 @@
 
 <!-- ================= JS ================= -->
 <script>
-/* POPUP +18 */
+/* ========== POPUP +18 ========== */
 const popup = document.getElementById("age-popup");
 const acceptBtn = document.getElementById("accept-age");
 const declineBtn = document.getElementById("decline-age");
@@ -106,8 +104,15 @@ declineBtn.addEventListener("click", () => {
     window.location.href = "https://www.google.com";
 });
 
-/* THEME SWITCH */
+/* ========== THEME SWITCH ========== */
 const toggle = document.getElementById("theme-toggle");
+
+// Init toggle state
+if(document.body.classList.contains("light")){
+    toggle.checked = true;
+} else {
+    toggle.checked = false;
+}
 
 toggle.addEventListener("change", () => {
     document.body.classList.toggle("light");
