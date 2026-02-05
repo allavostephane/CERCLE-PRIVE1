@@ -10,6 +10,74 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ====== Fond de la page d'accueil ====== */
+        body {
+            background: url("https://app.photoroom.com/u/edit/29fdcea7-8b48-4a0f-a9a2-c56f16ee5bf2?isShared=true&sharedBy=info.allavostephane%40gmail.com") center/cover no-repeat;
+        }
+
+        /* ====== Boutons cartes cliquables ====== */
+        .category-card {
+            cursor: pointer;
+        }
+
+        /* ====== Silhouettes des cartes ====== */
+        .category-card.femmes {
+            background:
+                linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2)),
+                url("https://app.photoroom.com/u/edit/9b9439da-105c-449c-9b9d-179e02b2f8df?isShared=true&sharedBy=info.allavostephane%40gmail.com") center/cover no-repeat;
+        }
+
+        .category-card.hommes {
+            background:
+                linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2)),
+                url("https://app.photoroom.com/u/edit/7b488023-0c6c-4080-b3c9-92a1945cf8bc?isShared=true&sharedBy=info.allavostephane%40gmail.com") center/cover no-repeat;
+        }
+
+        /* ====== Switch jour/nuit avec icônes ====== */
+        .theme-switch label {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+            background: var(--card);
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+        }
+
+        .theme-switch label::before {
+            content: "☀️";
+            position: absolute;
+            left: 6px;
+            top: 3px;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .theme-switch label::after {
+            content: "🌙";
+            position: absolute;
+            right: 6px;
+            top: 3px;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        #theme-toggle {
+            display: none;
+        }
+
+        #theme-toggle:checked + label::before {
+            opacity: 0.3;
+        }
+
+        #theme-toggle:checked + label::after {
+            opacity: 1;
+        }
+    </style>
 </head>
 
 <body class="dark">
@@ -56,22 +124,20 @@
 <section class="categories">
 
     <!-- FEMMES -->
-    <div class="category-card femmes">
+    <div class="category-card femmes" onclick="location.href='femmes.html'">
         <div class="overlay"></div>
         <div class="content">
             <h2>Prestations Femmes</h2>
             <p>Élégance · Charme · Discrétion</p>
-            <button onclick="location.href='femmes.html'">Découvrir</button>
         </div>
     </div>
 
     <!-- HOMMES -->
-    <div class="category-card hommes">
+    <div class="category-card hommes" onclick="location.href='hommes.html'">
         <div class="overlay"></div>
         <div class="content">
             <h2>Prestations Hommes</h2>
             <p>Prestance · Raffinement · Confidentialité</p>
-            <button onclick="location.href='hommes.html'">Découvrir</button>
         </div>
     </div>
 
