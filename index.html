@@ -1,50 +1,73 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cercle Privé</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- CSS -->
   <link rel="stylesheet" href="assets/css/style.css">
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- ÉCRAN +18 -->
+<!-- ================= POP-UP +18 ================= -->
 <div id="age-gate" class="overlay">
-  <div class="age-box">
-    <h1>Cercle Privé</h1>
-    <p>Accès réservé aux personnes majeures (+18).</p>
-    <p>En continuant, vous certifiez avoir plus de 18 ans.</p>
+  <div class="age-box glass">
+    <h1 class="logo-big">Cercle Privé</h1>
 
-    <button onclick="acceptAge()">J’ai 18 ans ou plus</button>
-    <button class="secondary" onclick="leaveSite()">Quitter</button>
+    <p class="age-text">
+      Ce contenu est strictement réservé aux adultes.
+      <br>Vous devez avoir <strong>18 ans ou plus</strong> pour continuer.
+    </p>
+
+    <div class="age-actions">
+      <button onclick="acceptAge()">J’ai 18 ans ou plus</button>
+      <button class="secondary" onclick="leaveSite()">Quitter</button>
+    </div>
   </div>
 </div>
 
-<!-- HEADER -->
-<header>
-  <h2>Cercle Privé</h2>
-  <button id="theme-toggle" onclick="toggleTheme()">🌙</button>
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <h1 class="logo">Cercle Privé</h1>
+
+  <!-- SWITCH JOUR / NUIT -->
+  <label class="theme-switch">
+    <input type="checkbox" onchange="toggleTheme()">
+    <span class="slider"></span>
+  </label>
 </header>
 
-<!-- CONTENU PRINCIPAL -->
-<main>
-  <p class="subtitle">Bienvenue dans votre cercle exclusif</p>
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <p class="welcome">
+    Bienvenue dans votre
+    <br>
+    <span>cercle exclusif et confidentiel</span>
+  </p>
+</section>
 
-  <div class="actions">
-    <a href="gallery.html?type=femmes" class="btn primary">Prestations Femmes</a>
-    <a href="gallery.html?type=hommes" class="btn secondary">Prestations Hommes</a>
-  </div>
-</main>
+<!-- ================= CARTES ================= -->
+<section class="cards">
 
-<!-- JS -->
+  <!-- FEMME -->
+  <a href="gallery.html?type=femmes" class="glass-card">
+    <div class="silhouette">♀</div>
+    <h2>Prestations Femmes</h2>
+    <p>Élégance · Discrétion · Raffinement</p>
+  </a>
+
+  <!-- HOMME -->
+  <a href="gallery.html?type=hommes" class="glass-card">
+    <div class="silhouette">♂</div>
+    <h2>Prestations Hommes</h2>
+    <p>Charme · Présence · Confidentialité</p>
+  </a>
+
+</section>
+
+<!-- ================= SCRIPTS ================= -->
 <script src="assets/js/theme.js"></script>
 <script src="assets/js/age.js"></script>
 
