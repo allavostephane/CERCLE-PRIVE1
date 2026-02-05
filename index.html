@@ -10,19 +10,25 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
         /* ====== Fond de la page d'accueil ====== */
-        body {
-            background: url("https://app.photoroom.com/u/edit/29fdcea7-8b48-4a0f-a9a2-c56f16ee5bf2?isShared=true&sharedBy=info.allavostephane%40gmail.com") center/cover no-repeat;
+        body.dark {
+            background: url("https://app.photoroom.com/u/edit/29fdcea7-8b48-4a0f-a9a2-c56f16ee5bf2?isShared=true&sharedBy=info.allavostephane%40gmail.com") center/cover no-repeat fixed;
+            color: #fff;
         }
 
-        /* ====== Boutons cartes cliquables ====== */
+        body.light {
+            background: url("https://app.photoroom.com/u/edit/29fdcea7-8b48-4a0f-a9a2-c56f16ee5bf2?isShared=true&sharedBy=info.allavostephane%40gmail.com") center/cover no-repeat fixed;
+            color: #111;
+        }
+
+        /* Cartes cliquables */
         .category-card {
             cursor: pointer;
         }
 
-        /* ====== Silhouettes des cartes ====== */
+        /* Silhouettes */
         .category-card.femmes {
             background:
                 linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2)),
@@ -35,7 +41,7 @@
                 url("https://app.photoroom.com/u/edit/7b488023-0c6c-4080-b3c9-92a1945cf8bc?isShared=true&sharedBy=info.allavostephane%40gmail.com") center/cover no-repeat;
         }
 
-        /* ====== Switch jour/nuit avec icônes ====== */
+        /* Switch Jour/Nuit avec icônes */
         .theme-switch label {
             position: relative;
             display: inline-block;
@@ -55,6 +61,7 @@
             top: 3px;
             font-size: 18px;
             transition: 0.3s;
+            opacity: 1;
         }
 
         .theme-switch label::after {
@@ -64,10 +71,7 @@
             top: 3px;
             font-size: 18px;
             transition: 0.3s;
-        }
-
-        #theme-toggle {
-            display: none;
+            opacity: 0.3;
         }
 
         #theme-toggle:checked + label::before {
@@ -174,15 +178,16 @@ declineBtn.addEventListener("click", () => {
 const toggle = document.getElementById("theme-toggle");
 
 // Init toggle state
-if(document.body.classList.contains("light")){
-    toggle.checked = true;
-} else {
-    toggle.checked = false;
-}
+toggle.checked = document.body.classList.contains("light");
 
 toggle.addEventListener("change", () => {
-    document.body.classList.toggle("light");
-    document.body.classList.toggle("dark");
+    if(toggle.checked){
+        document.body.classList.add("light");
+        document.body.classList.remove("dark");
+    } else {
+        document.body.classList.add("dark");
+        document.body.classList.remove("light");
+    }
 });
 </script>
 
