@@ -1,24 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const ageGate = document.getElementById("age-gate");
+  const popup = document.getElementById("age-popup");
+  const acceptBtn = document.getElementById("accept-age");
+  const declineBtn = document.getElementById("decline-age");
 
-    // Sécurité : si l'élément n'existe pas
-    if (!ageGate) return;
+  // Afficher le pop-up si pas encore accepté
+  if (!localStorage.getItem("ageConfirmed")) {
+    popup.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
 
-    // Vérifier si l'âge est déjà confirmé
-    const ageAccepted = localStorage.getItem("ageAccepted");
-
-    if (ageAccepted !== "true") {
-        ageGate.classList.add("active");
-        document.body.style.overflow = "hidden";
-    }
-});
-
-function acceptAge() {
-    localStorage.setItem("ageAccepted", "true");
-    document.getElementById("age-gate").classList.remove("active");
+  // Accepter
+  acceptBtn.addEventListener("click", () => {
+    localStorage.setItem("ageConfirmed", "true");
+    popup.classList.remove("active");
     document.body.style.overflow = "auto";
-}
+  });
 
-function leaveSite() {
+  // Refuser
+  declineBtn.addEventListener("click", () => {
     window.location.href = "https://www.google.com";
-}
+  });
+});
