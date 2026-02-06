@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prestations Hommes</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prestations Hommes</title>
+<link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body class="dark">
 
@@ -17,31 +17,61 @@
 </header>
 
 <section class="hero">
-    <h1>Kevin, 30 ans</h1>
+
+<h1>Profils Hommes</h1>
+<p>Découvrez nos 10 profils masculins exclusifs</p>
+
+<!-- Début des profils -->
+<div class="profiles-container">
+
+<!-- Profil template -->
+<div class="profile">
+    <h2>Kevin, 30 ans</h2>
     <p>Élégance & Charisme · Moments exclusifs</p>
-
     <div class="gallery">
-        <img src="./assets/images/profils/kevin1.jpg" alt="Kevin1">
-        <img src="./assets/images/profils/kevin2.jpg" alt="Kevin2">
-        <img src="./assets/images/profils/kevin3.jpg" alt="Kevin3">
+        <img src="./assets/images/profils/hommes/kevin1.jpg" alt="Kevin1">
+        <img src="./assets/images/profils/hommes/kevin2.jpg" alt="Kevin2">
+        <img src="./assets/images/profils/hommes/kevin3.jpg" alt="Kevin3">
     </div>
-
     <div class="reservation-card">
-        <label>Date</label>
-        <input type="date" id="res-date">
-
-        <label>Heure</label>
-        <input type="time" id="res-time">
-
+        <label>Date</label><input type="date" id="res-date-kevin">
+        <label>Heure</label><input type="time" id="res-time-kevin">
         <label>Durée</label>
-        <select id="res-duration">
+        <select id="res-duration-kevin">
             <option value="1">1h</option>
             <option value="2">2h</option>
             <option value="3">3h</option>
         </select>
-
-        <button id="res-btn">Réserver via WhatsApp</button>
+        <button onclick="reserver('Kevin','res-date-kevin','res-time-kevin','res-duration-kevin')">Réserver via WhatsApp</button>
     </div>
+</div>
+
+<!-- Répéter la div profile pour chaque profil -->
+<div class="profile">
+    <h2>Marc, 28 ans</h2>
+    <p>Charisme & Raffinement</p>
+    <div class="gallery">
+        <img src="./assets/images/profils/hommes/marc1.jpg" alt="Marc1">
+        <img src="./assets/images/profils/hommes/marc2.jpg" alt="Marc2">
+    </div>
+    <div class="reservation-card">
+        <label>Date</label><input type="date" id="res-date-marc">
+        <label>Heure</label><input type="time" id="res-time-marc">
+        <label>Durée</label>
+        <select id="res-duration-marc">
+            <option value="1">1h</option>
+            <option value="2">2h</option>
+            <option value="3">3h</option>
+        </select>
+        <button onclick="reserver('Marc','res-date-marc','res-time-marc','res-duration-marc')">Réserver via WhatsApp</button>
+    </div>
+</div>
+
+<!-- Ajouter les 8 autres profils de la même manière -->
+<!-- ... -->
+
+</div>
+
 </section>
 
 <footer class="footer">© 2026 — Cercle Privé • Accès réservé aux adultes (+18)</footer>
@@ -49,15 +79,13 @@
 <script src="./assets/js/theme.js"></script>
 <script src="./assets/js/age.js"></script>
 <script>
-const resBtn = document.getElementById("res-btn");
-resBtn.addEventListener("click", () => {
-    const name = "Kevin";
-    const date = document.getElementById("res-date").value;
-    const time = document.getElementById("res-time").value;
-    const duration = document.getElementById("res-duration").value;
+function reserver(name, dateId, timeId, durationId){
+    const date = document.getElementById(dateId).value;
+    const time = document.getElementById(timeId).value;
+    const duration = document.getElementById(durationId).value;
     const message = `Bonjour, je souhaite réserver ${name}. Date : ${date}, Heure : ${time}, Durée : ${duration}h. Merci.`;
     window.open(`https://wa.me/2290196110198?text=${encodeURIComponent(message)}`);
-});
+}
 </script>
 
 </body>
