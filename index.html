@@ -1,87 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cercle Privé</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        /* ====== Fond de la page d'accueil ====== */
-        body.dark {
-            background: url("https://app.photoroom.com/u/edit/29fdcea7-8b48-4a0f-a9a2-c56f16ee5bf2?isShared=true&sharedBy=info.allavostephane%40gmail.com") center/cover no-repeat fixed;
-            color: #fff;
-        }
-
-        body.light {
-            background: url("https://app.photoroom.com/u/edit/29fdcea7-8b48-4a0f-a9a2-c56f16ee5bf2?isShared=true&sharedBy=info.allavostephane%40gmail.com") center/cover no-repeat fixed;
-            color: #111;
-        }
-
-        /* Cartes cliquables */
-        .category-card {
-            cursor: pointer;
-        }
-
-        /* Silhouettes */
-        .category-card.femmes {
-            background:
-                linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2)),
-                url("https://app.photoroom.com/u/edit/9b9439da-105c-449c-9b9d-179e02b2f8df?isShared=true&sharedBy=info.allavostephane%40gmail.com") center/cover no-repeat;
-        }
-
-        .category-card.hommes {
-            background:
-                linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2)),
-                url("https://app.photoroom.com/u/edit/7b488023-0c6c-4080-b3c9-92a1945cf8bc?isShared=true&sharedBy=info.allavostephane%40gmail.com") center/cover no-repeat;
-        }
-
-        /* Switch Jour/Nuit avec icônes */
-        .theme-switch label {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 30px;
-            background: var(--card);
-            border-radius: 50px;
-            border: 1px solid var(--border);
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-        }
-
-        .theme-switch label::before {
-            content: "☀️";
-            position: absolute;
-            left: 6px;
-            top: 3px;
-            font-size: 18px;
-            transition: 0.3s;
-            opacity: 1;
-        }
-
-        .theme-switch label::after {
-            content: "🌙";
-            position: absolute;
-            right: 6px;
-            top: 3px;
-            font-size: 18px;
-            transition: 0.3s;
-            opacity: 0.3;
-        }
-
-        #theme-toggle:checked + label::before {
-            opacity: 0.3;
-        }
-
-        #theme-toggle:checked + label::after {
-            opacity: 1;
-        }
-    </style>
 </head>
 
 <body class="dark">
@@ -108,10 +36,9 @@
         <span class="gold">CERCLE</span> PRIVÉ
     </div>
 
-    <!-- Switch Dark / Light -->
     <div class="theme-switch">
         <input type="checkbox" id="theme-toggle">
-        <label for="theme-toggle"></label>
+        <label for="theme-toggle" aria-label="Changer le thème"></label>
     </div>
 </header>
 
@@ -128,7 +55,7 @@
 <section class="categories">
 
     <!-- FEMMES -->
-    <div class="category-card femmes" onclick="location.href='femmes.html'">
+    <div class="category-card femmes" onclick="window.location.href='femmes.html'">
         <div class="overlay"></div>
         <div class="content">
             <h2>Prestations Femmes</h2>
@@ -137,7 +64,7 @@
     </div>
 
     <!-- HOMMES -->
-    <div class="category-card hommes" onclick="location.href='hommes.html'">
+    <div class="category-card hommes" onclick="window.location.href='hommes.html'">
         <div class="overlay"></div>
         <div class="content">
             <h2>Prestations Hommes</h2>
@@ -153,43 +80,8 @@
 </footer>
 
 <!-- ================= JS ================= -->
-<script>
-/* ========== POPUP +18 ========== */
-const popup = document.getElementById("age-popup");
-const acceptBtn = document.getElementById("accept-age");
-const declineBtn = document.getElementById("decline-age");
-
-if (!localStorage.getItem("ageConfirmed")) {
-    popup.classList.add("active");
-    document.body.style.overflow = "hidden";
-}
-
-acceptBtn.addEventListener("click", () => {
-    localStorage.setItem("ageConfirmed", "true");
-    popup.classList.remove("active");
-    document.body.style.overflow = "auto";
-});
-
-declineBtn.addEventListener("click", () => {
-    window.location.href = "https://www.google.com";
-});
-
-/* ========== THEME SWITCH ========== */
-const toggle = document.getElementById("theme-toggle");
-
-// Init toggle state
-toggle.checked = document.body.classList.contains("light");
-
-toggle.addEventListener("change", () => {
-    if(toggle.checked){
-        document.body.classList.add("light");
-        document.body.classList.remove("dark");
-    } else {
-        document.body.classList.add("dark");
-        document.body.classList.remove("light");
-    }
-});
-</script>
+<script src="assets/js/age.js" defer></script>
+<script src="assets/js/theme.js" defer></script>
 
 </body>
 </html>
