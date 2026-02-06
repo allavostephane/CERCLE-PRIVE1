@@ -1,128 +1,64 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prestations Hommes — Cercle Privé</title>
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="./assets/css/style.css" />
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prestations Hommes</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-
 <body class="dark">
 
-<!-- ================= HEADER ================= -->
 <header class="header">
-    <div class="logo">
-        <span class="gold">CERCLE</span> PRIVÉ
-    </div>
-
-    <!-- Switch Dark / Light -->
+    <div class="logo"><span class="gold">CERCLE</span> PRIVÉ</div>
     <div class="theme-switch">
         <input type="checkbox" id="theme-toggle">
         <label for="theme-toggle"></label>
     </div>
 </header>
 
-<!-- ================= HERO ================= -->
 <section class="hero">
-    <h1>Prestations Hommes</h1>
-    <p>Choisissez votre prestataire et découvrez son profil.</p>
-</section>
+    <h1>Kevin, 30 ans</h1>
+    <p>Élégance & Charisme · Moments exclusifs</p>
 
-<!-- ================= GALERIE DES PROFILS ================= -->
-<section class="categories">
-    <!-- Profils Hommes -->
-    <div class="category-card" onclick="window.location.href='profil-hommes/kevin.html'">
-        <div class="overlay"></div>
-        <div class="content">
-            <h2>Kevin, 30 ans</h2>
-            <p>Élégance & Charisme · Moments exclusifs</p>
-        </div>
+    <div class="gallery">
+        <img src="./assets/images/profils/kevin1.jpg" alt="Kevin1">
+        <img src="./assets/images/profils/kevin2.jpg" alt="Kevin2">
+        <img src="./assets/images/profils/kevin3.jpg" alt="Kevin3">
     </div>
 
-    <div class="category-card" onclick="window.location.href='profil-hommes/alex.html'">
-        <div class="overlay"></div>
-        <div class="content">
-            <h2>Alex, 28 ans</h2>
-            <p>Prestance & raffinement · Discrétion assurée</p>
-        </div>
-    </div>
+    <div class="reservation-card">
+        <label>Date</label>
+        <input type="date" id="res-date">
 
-    <div class="category-card" onclick="window.location.href='profil-hommes/marc.html'">
-        <div class="overlay"></div>
-        <div class="content">
-            <h2>Marc, 32 ans</h2>
-            <p>Charme & élégance · Accompagnement haut de gamme</p>
-        </div>
-    </div>
+        <label>Heure</label>
+        <input type="time" id="res-time">
 
-    <div class="category-card" onclick="window.location.href='profil-hommes/thomas.html'">
-        <div class="overlay"></div>
-        <div class="content">
-            <h2>Thomas, 29 ans</h2>
-            <p>Raffinement & style · Moments privilégiés</p>
-        </div>
-    </div>
+        <label>Durée</label>
+        <select id="res-duration">
+            <option value="1">1h</option>
+            <option value="2">2h</option>
+            <option value="3">3h</option>
+        </select>
 
-    <div class="category-card" onclick="window.location.href='profil-hommes/lucas.html'">
-        <div class="overlay"></div>
-        <div class="content">
-            <h2>Lucas, 31 ans</h2>
-            <p>Professionnel & discret · Élégance assurée</p>
-        </div>
-    </div>
-
-    <div class="category-card" onclick="window.location.href='profil-hommes/leo.html'">
-        <div class="overlay"></div>
-        <div class="content">
-            <h2>Léo, 27 ans</h2>
-            <p>Classe & charisme · Expérience exclusive</p>
-        </div>
-    </div>
-
-    <div class="category-card" onclick="window.location.href='profil-hommes/adam.html'">
-        <div class="overlay"></div>
-        <div class="content">
-            <h2>Adam, 33 ans</h2>
-            <p>Raffinement & charme · Moments uniques</p>
-        </div>
-    </div>
-
-    <div class="category-card" onclick="window.location.href='profil-hommes/ethan.html'">
-        <div class="overlay"></div>
-        <div class="content">
-            <h2>Ethan, 28 ans</h2>
-            <p>Prestance & élégance · Discrétion totale</p>
-        </div>
-    </div>
-
-    <div class="category-card" onclick="window.location.href='profil-hommes/noah.html'">
-        <div class="overlay"></div>
-        <div class="content">
-            <h2>Noah, 30 ans</h2>
-            <p>Charisme & style · Accompagnement exclusif</p>
-        </div>
-    </div>
-
-    <div class="category-card" onclick="window.location.href='profil-hommes/max.html'">
-        <div class="overlay"></div>
-        <div class="content">
-            <h2>Max, 29 ans</h2>
-            <p>Élégance & discrétion · Moments privilégiés</p>
-        </div>
+        <button id="res-btn">Réserver via WhatsApp</button>
     </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
-<footer class="footer">
-    <p>© 2026 — Cercle Privé • Accès réservé aux adultes (+18)</p>
-</footer>
+<footer class="footer">© 2026 — Cercle Privé • Accès réservé aux adultes (+18)</footer>
 
-<!-- ================= JS ================= -->
 <script src="./assets/js/theme.js"></script>
+<script src="./assets/js/age.js"></script>
+<script>
+const resBtn = document.getElementById("res-btn");
+resBtn.addEventListener("click", () => {
+    const name = "Kevin";
+    const date = document.getElementById("res-date").value;
+    const time = document.getElementById("res-time").value;
+    const duration = document.getElementById("res-duration").value;
+    const message = `Bonjour, je souhaite réserver ${name}. Date : ${date}, Heure : ${time}, Durée : ${duration}h. Merci.`;
+    window.open(`https://wa.me/2290196110198?text=${encodeURIComponent(message)}`);
+});
+</script>
+
 </body>
 </html>
