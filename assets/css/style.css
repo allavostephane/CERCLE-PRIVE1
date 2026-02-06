@@ -8,7 +8,7 @@
 
 /* ================= VARIABLES ================= */
 body.dark {
-    --bg: url("../images/background/accueil.jpg") center/cover no-repeat fixed;
+    --bg: #0b0b0f url("../images/background/accueil.jpg") center/cover no-repeat fixed;
     --text: #ffffff;
     --card: rgba(255, 255, 255, 0.08);
     --border: rgba(255, 255, 255, 0.18);
@@ -16,7 +16,7 @@ body.dark {
 }
 
 body.light {
-    --bg: url("../images/background/accueil.jpg") center/cover no-repeat fixed;
+    --bg: #ffffff url("../images/background/accueil.jpg") center/cover no-repeat fixed;
     --text: #111111;
     --card: rgba(255, 255, 255, 0.7);
     --border: rgba(0, 0, 0, 0.1);
@@ -127,7 +127,7 @@ body {
     border: 1px solid var(--border);
     backdrop-filter: blur(20px);
     overflow: hidden;
-    transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease, background 0.5s ease;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
     cursor: pointer;
 }
 
@@ -142,6 +142,7 @@ body {
 .category-card .overlay {
     position: absolute;
     inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2));
     border-radius: 25px;
     transition: background 0.4s ease;
 }
@@ -169,25 +170,17 @@ body {
     opacity: 0.9;
 }
 
-/* Silhouettes */
+/* Silhouettes locales */
 .category-card.femmes {
     background:
         linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2)),
         url("../images/silhouettes/femme.png") center/cover no-repeat;
 }
 
-body.light .category-card.femmes {
-    background: rgba(255,255,255,0.7);
-}
-
 .category-card.hommes {
     background:
         linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2)),
         url("../images/silhouettes/homme.png") center/cover no-repeat;
-}
-
-body.light .category-card.hommes {
-    background: rgba(255,255,255,0.7);
 }
 
 /* ================= FOOTER ================= */
@@ -271,4 +264,4 @@ body.light .category-card.hommes {
         transform: scale(1);
         opacity: 1;
     }
-                     }
+}
