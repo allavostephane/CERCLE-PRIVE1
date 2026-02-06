@@ -2,26 +2,27 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Cercle Privé</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cercle Privé</title>
 
-    <!-- Google Font -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body class="dark" style="background-image: url('assets/images/acceuil.jpg');">
+<body class="dark">
 
 <!-- ================= POPUP +18 ================= -->
-<div class="age-popup active" id="age-gate">
+<div id="age-gate" class="age-popup">
     <div class="age-card">
         <h2>🔞 Accès réservé</h2>
-        <p>Ce site est strictement réservé aux personnes majeures (+18).</p>
+        <p>
+            Ce site est strictement réservé aux personnes majeures (+18).<br>
+            En continuant, vous confirmez avoir l’âge légal.
+        </p>
         <div class="age-buttons">
-            <button id="accept-age" onclick="acceptAge()">J’ai 18+</button>
-            <button id="decline-age" onclick="leaveSite()">Quitter</button>
+            <button onclick="acceptAge()">J’ai 18 ans ou plus</button>
+            <button onclick="leaveSite()">Quitter</button>
         </div>
     </div>
 </div>
@@ -29,7 +30,7 @@
 <!-- ================= HEADER ================= -->
 <header class="header">
     <div class="logo">
-        CERCLE <span class="gold">PRIVÉ</span>
+        <span class="gold">CERCLE</span> PRIVÉ
     </div>
 
     <div class="theme-switch">
@@ -40,49 +41,37 @@
 
 <!-- ================= HERO ================= -->
 <section class="hero">
-    <h1>Bienvenue au Cercle Privé</h1>
-    <p>Un univers sélect, élégant et réservé</p>
+    <h1>Bienvenue dans votre cercle exclusif</h1>
+    <p>Une expérience privée, élégante et confidentielle</p>
 </section>
 
 <!-- ================= CATEGORIES ================= -->
 <section class="categories">
 
-    <!-- FEMMES -->
-    <a class="category-card femmes" href="#">
+    <div class="category-card femmes" onclick="location.href='femmes.html'">
         <div class="overlay"></div>
         <div class="content">
-            <h2>Femmes</h2>
-            <p>Accès exclusif</p>
+            <h2>Prestations Femmes</h2>
+            <p>Élégance · Charme · Discrétion</p>
         </div>
-    </a>
+    </div>
 
-    <!-- HOMMES -->
-    <a class="category-card hommes" href="#">
+    <div class="category-card hommes" onclick="location.href='hommes.html'">
         <div class="overlay"></div>
         <div class="content">
-            <h2>Hommes</h2>
-            <p>Accès privilégié</p>
+            <h2>Prestations Hommes</h2>
+            <p>Prestance · Raffinement · Confidentialité</p>
         </div>
-    </a>
+    </div>
 
 </section>
 
-<!-- ================= FOOTER ================= -->
 <footer class="footer">
-    © 2026 — Cercle Privé · Tous droits réservés
+    © 2026 — Cercle Privé • Accès réservé aux adultes
 </footer>
 
-<!-- ================= JS ================= -->
-<script src="assets/js/age.js"></script>
 <script src="assets/js/theme.js"></script>
-
-<script>
-/* Synchronisation checkbox thème */
-const themeToggle = document.getElementById("theme-toggle");
-if (document.body.classList.contains("light")) {
-    themeToggle.checked = true;
-}
-</script>
+<script src="assets/js/age.js"></script>
 
 </body>
 </html>
