@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cercle Privé</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css" />
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -14,71 +14,74 @@
 
 <body class="dark">
 
-    <!-- ================= POPUP +18 ================= -->
-    <div id="age-popup" class="age-popup">
-        <div class="age-card">
-            <h2>🔞 Accès réservé</h2>
-            <p>
-                Cercle Privé est strictement réservé aux personnes majeures (+18).<br>
-                En continuant, vous confirmez avoir l’âge légal.
-            </p>
-            <div class="age-buttons">
-                <button id="accept-age">J’ai 18 ans ou plus</button>
-                <button id="decline-age">Quitter</button>
-            </div>
+<!-- ================= POPUP +18 ================= -->
+<div id="age-popup" class="age-popup">
+    <div class="age-card">
+        <h2>🔞 Accès réservé</h2>
+        <p>
+            Cercle Privé est strictement réservé aux personnes majeures (+18).<br>
+            En continuant, vous confirmez avoir l’âge légal.
+        </p>
+        <div class="age-buttons">
+            <button id="accept-age">J’ai 18 ans ou plus</button>
+            <button id="decline-age">Quitter</button>
+        </div>
+    </div>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+    <div class="logo">
+        <span class="gold">CERCLE</span> PRIVÉ
+    </div>
+
+    <!-- Switch Dark / Light -->
+    <div class="theme-switch">
+        <input type="checkbox" id="theme-toggle">
+        <label for="theme-toggle"></label>
+    </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+    <h1>Bienvenue dans votre cercle exclusif</h1>
+    <p>
+        Une expérience privée, élégante et confidentielle.<br>
+        Sélectionnez votre univers.
+    </p>
+</section>
+
+<!-- ================= CATEGORIES ================= -->
+<section class="categories">
+
+    <!-- FEMMES -->
+    <div class="category-card femmes" onclick="location.href='femmes.html'">
+        <div class="overlay"></div>
+        <div class="content">
+            <h2>Prestations Femmes</h2>
+            <p>Élégance · Charme · Discrétion</p>
         </div>
     </div>
 
-    <!-- ================= HEADER ================= -->
-    <header class="header">
-        <div class="logo">
-            <span class="gold">CERCLE</span> PRIVÉ
+    <!-- HOMMES -->
+    <div class="category-card hommes" onclick="location.href='hommes.html'">
+        <div class="overlay"></div>
+        <div class="content">
+            <h2>Prestations Hommes</h2>
+            <p>Prestance · Raffinement · Confidentialité</p>
         </div>
+    </div>
 
-        <!-- Switch Dark / Light -->
-        <div class="theme-switch">
-            <input type="checkbox" id="theme-toggle">
-            <label for="theme-toggle"></label>
-        </div>
-    </header>
+</section>
 
-    <!-- ================= HERO ================= -->
-    <section class="hero">
-        <h1>Bienvenue dans votre cercle exclusif</h1>
-        <p>Une expérience privée, élégante et confidentielle.<br>Sélectionnez votre univers.</p>
-    </section>
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+    <p>© 2026 — Cercle Privé • Accès réservé aux adultes (+18)</p>
+</footer>
 
-    <!-- ================= CATEGORIES ================= -->
-    <section class="categories">
-
-        <!-- FEMMES -->
-        <div class="category-card femmes" onclick="location.href='femmes.html'">
-            <div class="overlay"></div>
-            <div class="content">
-                <h2>Prestations Femmes</h2>
-                <p>Élégance · Charme · Discrétion</p>
-            </div>
-        </div>
-
-        <!-- HOMMES -->
-        <div class="category-card hommes" onclick="location.href='hommes.html'">
-            <div class="overlay"></div>
-            <div class="content">
-                <h2>Prestations Hommes</h2>
-                <p>Prestance · Raffinement · Confidentialité</p>
-            </div>
-        </div>
-
-    </section>
-
-    <!-- ================= FOOTER ================= -->
-    <footer class="footer">
-        <p>© 2026 — Cercle Privé • Accès réservé aux adultes (+18)</p>
-    </footer>
-
-    <!-- ================= JS ================= -->
-    <script src="./assets/js/age.js"></script>
-    <script src="./assets/js/theme.js"></script>
+<!-- ================= JS ================= -->
+<script src="assets/js/age.js"></script>
+<script src="assets/js/theme.js"></script>
 
 </body>
 </html>
