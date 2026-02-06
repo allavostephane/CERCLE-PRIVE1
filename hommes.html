@@ -1,91 +1,101 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prestations Hommes</title>
-<link rel="stylesheet" href="./assets/css/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kevin — Cercle Privé</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body class="dark">
 
+<!-- ================= HEADER ================= -->
 <header class="header">
-    <div class="logo"><span class="gold">CERCLE</span> PRIVÉ</div>
+    <div class="logo">
+        <span class="gold">CERCLE</span> PRIVÉ
+    </div>
+
     <div class="theme-switch">
         <input type="checkbox" id="theme-toggle">
         <label for="theme-toggle"></label>
     </div>
 </header>
 
-<section class="hero">
-
-<h1>Profils Hommes</h1>
-<p>Découvrez nos 10 profils masculins exclusifs</p>
-
-<!-- Début des profils -->
-<div class="profiles-container">
-
-<!-- Profil template -->
-<div class="profile">
-    <h2>Kevin, 30 ans</h2>
+<!-- ================= PROFIL ================= -->
+<section class="hero" style="text-align:center;">
+    <h1>Kevin, 30 ans</h1>
     <p>Élégance & Charisme · Moments exclusifs</p>
-    <div class="gallery">
-        <img src="./assets/images/profils/hommes/kevin1.jpg" alt="Kevin1">
-        <img src="./assets/images/profils/hommes/kevin2.jpg" alt="Kevin2">
-        <img src="./assets/images/profils/hommes/kevin3.jpg" alt="Kevin3">
-    </div>
-    <div class="reservation-card">
-        <label>Date</label><input type="date" id="res-date-kevin">
-        <label>Heure</label><input type="time" id="res-time-kevin">
-        <label>Durée</label>
-        <select id="res-duration-kevin">
-            <option value="1">1h</option>
-            <option value="2">2h</option>
-            <option value="3">3h</option>
-        </select>
-        <button onclick="reserver('Kevin','res-date-kevin','res-time-kevin','res-duration-kevin')">Réserver via WhatsApp</button>
-    </div>
-</div>
-
-<!-- Répéter la div profile pour chaque profil -->
-<div class="profile">
-    <h2>Marc, 28 ans</h2>
-    <p>Charisme & Raffinement</p>
-    <div class="gallery">
-        <img src="./assets/images/profils/hommes/marc1.jpg" alt="Marc1">
-        <img src="./assets/images/profils/hommes/marc2.jpg" alt="Marc2">
-    </div>
-    <div class="reservation-card">
-        <label>Date</label><input type="date" id="res-date-marc">
-        <label>Heure</label><input type="time" id="res-time-marc">
-        <label>Durée</label>
-        <select id="res-duration-marc">
-            <option value="1">1h</option>
-            <option value="2">2h</option>
-            <option value="3">3h</option>
-        </select>
-        <button onclick="reserver('Marc','res-date-marc','res-time-marc','res-duration-marc')">Réserver via WhatsApp</button>
-    </div>
-</div>
-
-<!-- Ajouter les 8 autres profils de la même manière -->
-<!-- ... -->
-
-</div>
-
+    <img src="../assets/images/profils/kevin.jpg" alt="Kevin" style="width: 300px; border-radius: 20px; margin-top: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
 </section>
 
-<footer class="footer">© 2026 — Cercle Privé • Accès réservé aux adultes (+18)</footer>
+<!-- ================= FORMULAIRE DE RÉSERVATION ================= -->
+<section style="max-width: 500px; margin: 50px auto; padding: 20px; background: rgba(255,255,255,0.08); backdrop-filter: blur(20px); border-radius: 20px;">
+    <h2 style="text-align:center; margin-bottom:20px;">Réservez Kevin</h2>
 
-<script src="./assets/js/theme.js"></script>
-<script src="./assets/js/age.js"></script>
+    <form id="reservation-form">
+        <label>Date :</label><br>
+        <input type="date" id="res-date" required style="width:100%; padding:8px; margin-bottom:15px; border-radius:8px; border:none;"><br>
+
+        <label>Heure :</label><br>
+        <input type="time" id="res-time" required style="width:100%; padding:8px; margin-bottom:15px; border-radius:8px; border:none;"><br>
+
+        <label>Durée :</label><br>
+        <select id="res-duration" required style="width:100%; padding:8px; margin-bottom:15px; border-radius:8px; border:none;">
+            <option value="1">1 heure</option>
+            <option value="2">2 heures</option>
+            <option value="4">Nuit</option>
+        </select><br>
+
+        <p style="margin-bottom:15px;">Prix total : <span id="total-price">100€</span></p>
+
+        <button type="button" id="send-whatsapp" style="width:100%; padding:12px; border:none; border-radius:25px; background:#d4af37; color:#000; font-weight:600; cursor:pointer;">
+            Réserver via WhatsApp
+        </button>
+    </form>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+    <p>© 2026 — Cercle Privé • Accès réservé aux adultes (+18)</p>
+</footer>
+
+<!-- ================= JS ================= -->
+<script src="../assets/js/theme.js"></script>
 <script>
-function reserver(name, dateId, timeId, durationId){
-    const date = document.getElementById(dateId).value;
-    const time = document.getElementById(timeId).value;
-    const duration = document.getElementById(durationId).value;
-    const message = `Bonjour, je souhaite réserver ${name}. Date : ${date}, Heure : ${time}, Durée : ${duration}h. Merci.`;
-    window.open(`https://wa.me/2290196110198?text=${encodeURIComponent(message)}`);
+const pricePerHour = 50; // Prix horaire
+const durationSelect = document.getElementById("res-duration");
+const totalPriceSpan = document.getElementById("total-price");
+const sendBtn = document.getElementById("send-whatsapp");
+
+function updatePrice() {
+    let hours = parseInt(durationSelect.value);
+    let total = hours === 4 ? 200 : hours * pricePerHour;
+    totalPriceSpan.textContent = total + "€";
 }
+
+durationSelect.addEventListener("change", updatePrice);
+updatePrice(); // Initialisation
+
+sendBtn.addEventListener("click", () => {
+    const date = document.getElementById("res-date").value;
+    const time = document.getElementById("res-time").value;
+    const duration = durationSelect.options[durationSelect.selectedIndex].text;
+    const total = totalPriceSpan.textContent;
+
+    if(!date || !time) {
+        alert("Veuillez remplir la date et l'heure.");
+        return;
+    }
+
+    const message = `Bonjour, je souhaite réserver Kevin. Date: ${date}, Heure: ${time}, Durée: ${duration}. Total: ${total}. Merci de confirmer.`;
+    const whatsappUrl = "https://wa.me/NUMERO_DU_GERANT?text=" + encodeURIComponent(message);
+    window.open(whatsappUrl, "_blank");
+});
 </script>
 
 </body>
