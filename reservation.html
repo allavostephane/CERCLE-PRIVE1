@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Réservation — Cercle Privé</title>
+
+<link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body class="dark">
+
+<header class="header">
+  <div class="logo"><span class="gold">CERCLE</span> PRIVÉ</div>
+</header>
+
+<section class="reservation-container">
+
+  <!-- GALERIE -->
+  <div class="gallery">
+    <img src="assets/images/profils/femmes/femme1.jpg" class="active">
+    <img src="assets/images/profils/femmes/femme2.jpg">
+    <img src="assets/images/profils/femmes/femme3.jpg">
+  </div>
+
+  <!-- DESCRIPTION -->
+  <div class="reservation-info">
+    <h2>Profil sélectionné</h2>
+    <p>
+      Élégante, discrète et raffinée.  
+      Disponible pour des moments privés dans un cadre sécurisé et respectueux.
+    </p>
+
+    <!-- FORMULAIRE -->
+    <form id="reservationForm">
+      <input type="text" id="name" placeholder="Votre prénom" required>
+      <input type="date" id="date" required>
+      <input type="time" id="time" required>
+      <textarea id="message" placeholder="Message (optionnel)"></textarea>
+
+      <button type="submit">📲 Envoyer sur WhatsApp</button>
+    </form>
+  </div>
+
+</section>
+
+<footer class="footer">
+  © 2026 — Cercle Privé • Réservation confidentielle
+</footer>
+
+<script>
+/* GALERIE DÉROULANTE */
+let index = 0;
+const images = document.querySelectorAll(".gallery img");
+
+setInterval(() => {
+  images[index].classList.remove("active");
+  index = (index + 1) % images.length;
+  images[index].classList.add("active");
+}, 3500);
+
+/* WHATSAPP */
+document.getElementById("reservationForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const date = document.getElementById("date").value;
+  const time = document.getElementById("time").value;
+  const msg = document.getElementById("message").value;
+
+  const text =
+`Bonjour,
+Je souhaite faire une réservation.
+
+Nom : ${name}
+Date : ${date}
+Heure : ${time}
+Message : ${msg}`;
+
+  const phone = "2290196110198";
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+
+  window.open(url, "_blank");
+});
+</script>
+
+</body>
+</html>
